@@ -1,9 +1,12 @@
 ## chat_server
+```
 Command Line Chat App (server) (for now)
 ```
-# USAGE
+
+## USAGE:
+```
 make -f makefile
 ./main
-
+```
 
 
