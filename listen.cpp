@@ -79,8 +79,8 @@ void*ListenFunc(void *pData )
     socklen_t    iTCPClientAdd=sizeof(TCPServerAdd);
     //char *ip="127.0.0.1";
     int iListen;
-    int online_user_num=0;
-    int client_socket[online_user_num];
+    int check=0;
+    //int client_socket[online_user_num];
     int capacity=30;
     TCPServerAdd.sin_family = AF_INET;
     TCPServerAdd.sin_addr.s_addr =inet_addr("127.0.0.1");
@@ -102,18 +102,18 @@ void*ListenFunc(void *pData )
     listen(TCPServerSocket,5);
     while (1)
     {
-        client_socket[online_user_num]=accept(TCPServerSocket,(sockaddr*)&TCPClientAdd,&iTCPClientAdd);
+        check=accept(TCPServerSocket,(sockaddr*)&TCPClientAdd,&iTCPClientAdd);
         printf(" err  val %s %d ",strerror(errno),errno);
         printf("accepted");
         pthread_t t;
 
-        if(client_socket[online_user_num]>0)
+        if(check>0)
             {
 
                 int*pclient;
-                pclient=(int*)malloc(sizeof(client_socket[online_user_num]));
+                pclient=(int*)malloc(sizeof(check));
                 *pclient=socket(AF_INET,SOCK_STREAM,0);
-                *pclient=client_socket[online_user_num];
+                *pclient=check;
 
                 pthread_create(&t,NULL,handle_connection,(void*)pclient);
                 printf("\n socket size:%d",sizeof(*pclient));
