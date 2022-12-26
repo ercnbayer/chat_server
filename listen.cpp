@@ -1,6 +1,6 @@
 #include "listen.h"
 #include <iostream>
-#include <gst/gst.h>
+//#include <gst/gst.h>
 #include<unistd.h>
 #define SOCKETERROR -1
 
